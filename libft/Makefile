@@ -58,7 +58,7 @@ FTLST		=	ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 
 FTPTF_DIR	=	ft_printf/
 FTPTF		=	ft_hex_handler ft_int_handler ft_pointer_handler \
-				ft_print_handlers ft_printf
+				ft_print_handlers ft_printf ft_pntf
 
 SRC_FILES+=$(addprefix $(FTIS_DIR),$(FTIS))
 SRC_FILES+=$(addprefix $(FTMEM_DIR),$(FTMEM))
