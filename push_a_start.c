@@ -41,15 +41,21 @@ void	ft_last_three(t_value **a)
 		first = crawl->value;
 		second = crawl->next->value;
 		third = crawl->next->next->value;
-		if (first < second && second > third)
+		if (first > second)
+		{
 			ft_moves_sa(a);
-		else if (third < first)
+		}
+		else if (first < second && third < first)
+		{
+			ft_pntf("trigger");
 			ft_moves_rra(a);
+		}
 		else if (first < second && second < third)
-			done = 1;
+			ft_pntf("loopy");
 	}
-	fullstack(*a);
 }
+
+// 18 46 32
 
 void	ft_algo_perform(t_value **a)
 {

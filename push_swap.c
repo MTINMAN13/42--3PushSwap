@@ -12,11 +12,23 @@
 
 #include "push_swap.h"
 
+// return 1 if all values in the list cascade in ascending order
 int	ft_checksorted(t_value *list)
 {
-	if (list)
-		return (0);
-	return (1);
+	int		prev;
+	t_value *crawl;
+
+	prev = INT_MIN;
+	crawl = list;
+	while (prev < crawl->value)
+	{
+		prev = crawl->value;
+		crawl = crawl->next;
+		if (crawl == NULL)
+			return (1);
+	}
+	ft_pntf("not sorted");
+	return (0);
 }
 
 int	main(int argc, char *argv[])

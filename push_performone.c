@@ -43,6 +43,7 @@ void	ft_moves_sa(t_value **list)
 	t_value	*newone;
 	t_value	*three;
 
+	ft_pntf("-----");
 	if (!list)
 		ft_error();
 	newtwo = *list;
@@ -62,6 +63,8 @@ void	ft_moves_sa(t_value **list)
 	}
 	else
 		ft_error();
+	fullstack(*list);
+	ft_pntf("-----");
 }
 
 void ft_lasttofirst(t_value **list)
@@ -74,31 +77,21 @@ void ft_lasttofirst(t_value **list)
 	c = *list;
 	// two is node with s_index 1
 	two = ft_search_by_index(list, 1);
-	if (c)
-	{
-		while (c->next)
-			c = c->next;
-		c->s_index = 0;
-		c->prev->next = NULL;
-		c->prev = NULL;
-		c->next = two;
-		two->prev = c;
-		ft_pntf("last to first %i", c->value);
-	}
-	else
-		ft_error();
+	ft_pntf("hey");
+	while (c->next)
+		c = c->next;
+	c->s_index = 0;
+	c->prev->next = NULL;
+	c->prev = NULL;
+	c->next = two;
+	two->prev = c;
+	ft_pntf("last to first %i", c->value);
 }
 
 // The last element becomes the first one.
 void	ft_moves_rra(t_value **list)
 {
-	if (list)
-	{
-		ft_lstitr(*list, ft_reverse_rotate);
-		ft_lasttofirst(list);
-		ft_printf("rra\n");
-	}
-	else
-		ft_error();
-	fullstack(*list);
+	ft_lstitr(*list, ft_reverse_rotate);
+	ft_lasttofirst(list);
+	ft_printf("rra\n");
 }

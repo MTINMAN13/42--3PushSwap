@@ -76,16 +76,19 @@ void	fullstack(t_value *stack)
 t_value	*ft_search_by_index(t_value **stack, int searched_index)
 {
 	t_value	*first;
+	int		current_i;
 
 	if (!stack || searched_index < -1)
 		ft_error();
 	first = ft_util_reset_head(stack);
-	while (first->s_index != searched_index)
+	current_i = first->s_index;
+	while (current_i != searched_index)
 	{
+		current_i = first->s_index;
 		first = first->next;
-		if (!first)
-			ft_error();
 	}
+	if (current_i == searched_index)
+		ft_pntf("gefunden, %i", current_i);
 	return (first);
 }
 
