@@ -42,17 +42,17 @@ void	ft_last_three(t_value **a)
 		second = crawl->next->value;
 		third = crawl->next->next->value;
 		if (first > second)
-		{
 			ft_moves_sa(a);
-		}
 		else if (first < second && third < first)
-		{
-			ft_pntf("trigger");
 			ft_moves_rra(a);
-		}
+		else if (first < second && third < second)
+			ft_moves_ra(a);
 		else if (first < second && second < third)
-			ft_pntf("loopy");
+			done = 1;
+		fullstack(crawl);
 	}
+	if (ft_checksorted(*a))
+		ft_pntf("yes daddy i sorted last three");
 }
 
 // 18 46 32

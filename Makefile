@@ -67,4 +67,4 @@ test :	pushswap
 
 t_t	 :	pushswap
 		clear
-		./pushswap 46 32 18
+		./pushswap 46 18 32

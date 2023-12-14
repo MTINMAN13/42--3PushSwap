@@ -13,26 +13,33 @@
 #include "push_swap.h"
 
 // The first element becomes the last one.
-void	ft_firsttolast(t_value **crawl)
+void	ft_firsttolast(t_value **list)
 {
-	t_value	*c;
+	t_value	*first;
+	t_value *last;
 
-	c = *crawl;
-	while (c->s_index != -1)
-		c = c->prev;
+	first = ft_util_reset_head(list);
+	last = first;
+	while (last->next)
+	{
+		last = last->next;
+	}
+	first->next->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
+	first->s_index = last->s_index + 1;
 }
 
+// The first element becomes the last one.
 void	ft_moves_ra(t_value **list)
 {
-	if (list)
-	{
-		// Increment everythin - 1
-		// first becomes last
-		ft_lstitr(*list, ft_rotate);
-		ft_pntf("ra");
-	}
-	else
-		ft_error();
+	t_value	*crawl;
+
+	crawl = ft_util_reset_head(list);
+	ft_firsttolast(&crawl);
+	ft_lstitr(crawl, ft_rotate);
+	ft_printf("rra\n");
 }
 
 // Swap the first 2 elements at the top of stack a.
@@ -41,57 +48,51 @@ void	ft_moves_sa(t_value **list)
 {
 	t_value	*newtwo;
 	t_value	*newone;
-	t_value	*three;
 
-	ft_pntf("-----");
 	if (!list)
 		ft_error();
 	newtwo = *list;
-	// two is node with s_index 1
-	newone = ft_search_by_index(list, 1);
-	three = newone->next;
+	newone = ft_search_by_index(list, 0);
 	if (list)
 	{
+		newone->next->prev = newtwo;
+		newtwo->next = newone->next;
 		newtwo->s_index = 1;
 		newone->s_index = 0;
 		newone->prev = NULL;
 		newone->next = newtwo;
 		newtwo->prev = newone;
-		newtwo->next = three;
-		three->prev = newtwo;
 		ft_printf("sa\n");
 	}
 	else
 		ft_error();
-	fullstack(*list);
-	ft_pntf("-----");
 }
 
 void ft_lasttofirst(t_value **list)
 {
-	t_value	*c;
-	t_value *two;
+	t_value	*crawl;
+	t_value *last;
 
-	if (!list)
-		ft_error();
-	c = *list;
-	// two is node with s_index 1
-	two = ft_search_by_index(list, 1);
-	ft_pntf("hey");
-	while (c->next)
-		c = c->next;
-	c->s_index = 0;
-	c->prev->next = NULL;
-	c->prev = NULL;
-	c->next = two;
-	two->prev = c;
-	ft_pntf("last to first %i", c->value);
+	crawl = ft_util_reset_head(list);
+	last = crawl;
+	while (last->next)
+	{
+		last = last->next;
+	}
+	last->next = crawl;
+	crawl->prev = last;
+	last->prev->next = NULL;
+	last->prev = NULL;
+	last->s_index = -1;
 }
 
 // The last element becomes the first one.
 void	ft_moves_rra(t_value **list)
 {
-	ft_lstitr(*list, ft_reverse_rotate);
-	ft_lasttofirst(list);
+	t_value	*crawl;
+
+	crawl = ft_util_reset_head(list);
+	ft_lasttofirst(&crawl);
+	ft_lstitr(crawl, ft_reverse_rotate);
 	ft_printf("rra\n");
 }

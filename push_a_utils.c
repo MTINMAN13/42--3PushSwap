@@ -63,14 +63,16 @@ void	fullstack(t_value *stack)
 
 	nula = 1;
 	a = ft_util_reset_head(&stack);
+	ft_pntf("////// FULL STACK //////");
 	while (nula != 0)
 	{
-		ft_pntf("%i", a->value);
+		ft_pntf("%i       pos %i", a->value, a->s_index);
 		a = a->next;
 		if (a->next == NULL)
 			nula = 0;
 	}
-	ft_pntf("%i", a->value);
+	ft_pntf("%i       pos %i", a->value, a->s_index);
+	ft_pntf("////// FULL STACK //////");
 }
 
 t_value	*ft_search_by_index(t_value **stack, int searched_index)
@@ -78,17 +80,17 @@ t_value	*ft_search_by_index(t_value **stack, int searched_index)
 	t_value	*first;
 	int		current_i;
 
+	current_i = INT_MIN;
+	fullstack(*stack);
 	if (!stack || searched_index < -1)
 		ft_error();
 	first = ft_util_reset_head(stack);
-	current_i = first->s_index;
 	while (current_i != searched_index)
 	{
 		current_i = first->s_index;
 		first = first->next;
 	}
-	if (current_i == searched_index)
-		ft_pntf("gefunden, %i", current_i);
+	ft_pntf("SEARCH BY INDEX for %i returned thing with search index %i and val %i", searched_index, first->s_index, first->value);
 	return (first);
 }
 

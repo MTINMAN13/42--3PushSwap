@@ -19,6 +19,8 @@ void
 	t_value	*next_node;
 
 	node = lst;
+	while (node->prev)
+		node = node->prev;
 	while (node)
 	{
 		next_node = node->next;
@@ -33,8 +35,7 @@ void	ft_rotate(void *data)
 	t_value	*node;
 
 	node = (t_value *)data;
-	node->s_index += 1;
-	node->value += 1;
+	node->s_index -= 1;
 }
 
 // last becomes first
