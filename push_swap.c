@@ -20,6 +20,8 @@ int	ft_checksorted(t_value *list)
 
 	prev = INT_MIN;
 	crawl = list;
+	while (crawl->prev)
+		crawl = crawl->prev;
 	while (prev < crawl->value)
 	{
 		prev = crawl->value;
@@ -27,7 +29,9 @@ int	ft_checksorted(t_value *list)
 		if (crawl == NULL)
 			return (1);
 	}
-	ft_pntf("not sorted");
+	while (crawl->prev)
+		crawl = crawl->prev;
+	// ft_pntf("not sorted");
 	return (0);
 }
 
@@ -43,7 +47,6 @@ int	main(int argc, char *argv[])
 	}
 	if (!ft_checksorted(a)) // check if it isnt already sorted
 	{
-		ft_pntf("not sorted");
 		ft_sort(&a);        // perform the shabang
 	}
 	ft_free(&a);

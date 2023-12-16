@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+// returns real value of the max stackindex + 1 (if it has 3 nodes, it returns 3)
 int	ft_util_stacksize(t_value *stack)
 {
 	t_value	*crawl;
@@ -19,7 +20,8 @@ int	ft_util_stacksize(t_value *stack)
 	crawl = ft_util_reset_head(&stack);
 	while (crawl->next != NULL)
 		crawl = crawl->next;
-	ft_pntf("%i", crawl->s_index + 1);
+	while (stack->prev)
+		stack = stack->prev;
 	return (crawl->s_index + 1);
 }
 
@@ -67,11 +69,12 @@ void	fullstack(t_value *stack)
 	while (nula != 0)
 	{
 		ft_pntf("%i       pos %i", a->value, a->s_index);
-		a = a->next;
-		if (a->next == NULL)
+		if (a->next == 0)
 			nula = 0;
+		a = a->next;
 	}
-	ft_pntf("%i       pos %i", a->value, a->s_index);
+	if (a != 0)
+		ft_pntf("%i       pos %i", a->value, a->s_index);
 	ft_pntf("////// FULL STACK //////");
 }
 
@@ -81,7 +84,6 @@ t_value	*ft_search_by_index(t_value **stack, int searched_index)
 	int		current_i;
 
 	current_i = INT_MIN;
-	fullstack(*stack);
 	if (!stack || searched_index < -1)
 		ft_error();
 	first = ft_util_reset_head(stack);
@@ -90,8 +92,17 @@ t_value	*ft_search_by_index(t_value **stack, int searched_index)
 		current_i = first->s_index;
 		first = first->next;
 	}
-	ft_pntf("SEARCH BY INDEX for %i returned thing with search index %i and val %i", searched_index, first->s_index, first->value);
 	return (first);
+}
+
+t_value	*ft_last(t_value **x)
+{
+	t_value	*z;
+
+	z = *x;
+	while (z->next != 0)
+		z = z->next;
+	return (z);
 }
 
 /*

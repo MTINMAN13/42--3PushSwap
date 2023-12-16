@@ -14,7 +14,7 @@ INCLUDE = include
 
 # Sources
 SRC_FILES = push_swap push_a_initiate_stack push_error_handling push_a_start \
-			push_performone push_performtwo push_perform_moves \
+			push_performone push_performtwo push_perform_moves push_algo_execute \
 			push_a_utils
 
 SRC = $(addsuffix .c, $(SRC_FILES))
@@ -65,6 +65,10 @@ test :	pushswap
 		clear
 		./pushswap 600 594 066 32 984 2000 50000 45 65 98989 asd wtf ixd
 
+t_desc :pushswap
+		clear
+		./pushswap 4 3 2
+
 t_t	 :	pushswap
 		clear
-		./pushswap 46 18 32
+		./pushswap 364 32479 83572203 85 36

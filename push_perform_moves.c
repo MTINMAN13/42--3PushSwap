@@ -27,6 +27,8 @@ void
 		f(node);
 		node = next_node;
 	}
+	while (lst->prev)
+		lst = lst->prev;
 }
 
 // first becomes last

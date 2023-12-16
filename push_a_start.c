@@ -17,6 +17,7 @@ void	ft_sort(t_value	**a)
 	int	stack_size;
 
 	stack_size = ft_util_stacksize(*a);
+	ft_pntf("stacksize %i", stack_size);
 	if (stack_size <= 3)
 		ft_last_three(a);
 	else if (stack_size > 3)
@@ -38,19 +39,21 @@ void	ft_last_three(t_value **a)
 	while (done != 1)
 	{
 		crawl = ft_util_reset_head(a);
+		if (ft_checksorted(*a))
+			done = 1;
 		first = crawl->value;
 		second = crawl->next->value;
 		third = crawl->next->next->value;
-		if (first > second)
+		if (second < third && third < first)
+			ft_moves_ra(a);
+		else if (first > second)
 			ft_moves_sa(a);
 		else if (first < second && third < first)
 			ft_moves_rra(a);
 		else if (first < second && third < second)
 			ft_moves_ra(a);
-		else if (first < second && second < third)
-			done = 1;
-		fullstack(crawl);
 	}
+	fullstack(*a);
 	if (ft_checksorted(*a))
 		ft_pntf("yes daddy i sorted last three");
 }
@@ -59,8 +62,15 @@ void	ft_last_three(t_value **a)
 
 void	ft_algo_perform(t_value **a)
 {
-	if (a)
-		ft_pntf("performing");
-	else
-		ft_pntf("error");
+	t_value	*b;
+	int		size;
+
+	b = NULL;
+	size = ft_util_stacksize(*a);
+	if (size > 3)
+	{
+		ft_algo_b(a, &b, size);
+		size--;
+	}
+	ft_algo_wrap(a, &b);
 }

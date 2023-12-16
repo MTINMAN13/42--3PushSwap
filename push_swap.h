@@ -44,7 +44,7 @@ int		ft_checksorted(t_value *list);
 int		ft_util_stacksize(t_value *stack);
 t_value	*ft_util_reset_head(t_value **stack);
 t_value	*ft_search_by_index(t_value **stack, int searched_index);
-
+t_value	*ft_last(t_value **x);
 
 
 // -- HEAD INITIATION
@@ -67,9 +67,20 @@ void	ft_lstitr(t_value *lst, void (*f)(void*));
 // -- THE MOVES
 void	ft_moves_ra(t_value **list);
 void	ft_moves_rra(t_value **list);
-
 void	ft_moves_sa(t_value **list);
+void	ft_moves_pa(t_value **a, t_value **b);
+void	ft_moves_pb(t_value **a, t_value **b);
 
+void	ft_moves_rb(t_value **b);
+
+
+
+// __ THE ALGO
+void	ft_algo_b(t_value **a, t_value **b, int size);
+void	ft_algo_wrap(t_value **a, t_value **b);
+void	ft_check_descending(t_value **b);
+void	ft_back_to_a(t_value **a, t_value **b);
+void	ft_sub_aligner(t_value **a, t_value **b);
 
 
 
