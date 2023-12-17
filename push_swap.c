@@ -40,7 +40,7 @@ int	main(int argc, char *argv[])
 	t_value	*a;
 
 	a = ft_init(argc, argv);
-	if (!a || ft_checkifvalid(&a)) // check if it initiated properly
+	if (!a || !ft_checkifvalid(&a)) // check if it initiated properly
 	{
 		ft_free(&a);
 		ft_error();

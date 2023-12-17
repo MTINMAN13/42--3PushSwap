@@ -45,6 +45,10 @@ int		ft_util_stacksize(t_value *stack);
 t_value	*ft_util_reset_head(t_value **stack);
 t_value	*ft_search_by_index(t_value **stack, int searched_index);
 t_value	*ft_last(t_value **x);
+void	ft_clean(t_value **a);
+int		ft_biggestvalueinstack(t_value **a);
+int		ft_smallestvalueinstack(t_value **a);
+
 
 
 // -- HEAD INITIATION
@@ -57,6 +61,7 @@ int		ft_checkifvalid(t_value **values);
 void	ft_sort(t_value	**a);
 void	ft_last_three(t_value **a);
 void	ft_algo_perform(t_value **a);
+void	ft_last_b(t_value **a, t_value **b);
 
 // -- t
 void	ft_rotate(void *data);
@@ -82,6 +87,8 @@ void	ft_check_descending(t_value **b);
 void	ft_back_to_a(t_value **a, t_value **b);
 void	ft_sub_aligner(t_value **a, t_value **b);
 
+void	ft_findmove(t_value **a, t_value **b);
+void	ft_subfindmove(t_value **a, t_value **b);
 
 
 

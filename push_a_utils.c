@@ -105,6 +105,27 @@ t_value	*ft_last(t_value **x)
 	return (z);
 }
 
+// this will return 1 if it is sorted, 0 is not + rotates
+void	ft_check_descending(t_value **b)
+{
+	t_value *crawl;
+
+	ft_clean(b);
+	crawl = *b;
+	int i = 0;
+	while (crawl->next && i < 10)
+	{
+		if (crawl->value < crawl->next->value)
+		{
+			ft_moves_rb(&crawl);
+			i++;
+		}
+		crawl = crawl->next;
+	}
+	ft_clean(b);
+}
+
+
 /*
 TODO FIND BY INDEX
 

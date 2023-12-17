@@ -43,6 +43,7 @@ void	ft_moves_ra(t_value **list)
 	while (crawl->prev)
 		crawl = crawl->prev;
 	(*list) = crawl;
+	ft_clean(list);
 	ft_printf("ra\n");
 }
 
@@ -113,6 +114,8 @@ void	ft_moves_pb(t_value **a, t_value **b)
 	ft_lstitr(*a, ft_reverse_rotate);
 	while ((*a)->prev)
 		(*a) = (*a)->prev;
+	while ((*b)->prev)
+		(*b) = (*b)->prev;
 	b_new = (*b)->next;
 	(*a)->prev = (*b);
 	(*b)->s_index = (*a)->s_index - 1;
@@ -139,5 +142,6 @@ void	ft_moves_rb(t_value **b)
 	while (crawl->prev)
 		crawl = crawl->prev;
 	(*b) = crawl;
-	ft_printf("ra\n");
+	ft_clean(b);
+	ft_printf("rb\n");
 }

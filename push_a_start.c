@@ -70,7 +70,6 @@ void	ft_algo_perform(t_value **a)
 	if (size > 3)
 	{
 		ft_algo_b(a, &b, size);
-		size--;
 	}
 	ft_algo_wrap(a, &b);
 }

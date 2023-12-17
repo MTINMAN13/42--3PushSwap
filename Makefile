@@ -15,7 +15,8 @@ INCLUDE = include
 # Sources
 SRC_FILES = push_swap push_a_initiate_stack push_error_handling push_a_start \
 			push_performone push_performtwo push_perform_moves push_algo_execute \
-			push_a_utils
+			push_a_utils push_a_utils2 \
+			push_algo_find
 
 SRC = $(addsuffix .c, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
@@ -69,6 +70,21 @@ t_desc :pushswap
 		clear
 		./pushswap 4 3 2
 
+t_5	 :	pushswap
+		clear
+		./pushswap 25 9 31 35 42
+
+random_number = $$(echo $$((1 + $$RANDOM % 163)))
+
+t_6	 :	pushswap
+		clear
+		./pushswap 25 38 5 6 14 15
+
+t_7	 :	pushswap
+		clear
+		./pushswap 681 395 164 3477 31 805 367
+
 t_t	 :	pushswap
 		clear
-		./pushswap 364 32479 83572203 85 36
+		./pushswap $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number)
+

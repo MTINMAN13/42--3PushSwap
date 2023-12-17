@@ -12,13 +12,31 @@
 
 #include "push_swap.h"
 
-int	ft_checkifvalid(t_value **values)
+int	ft_checkifvalid(t_value** values)
 {
-	// if there is zero - invalid
-	// dupe values    --- invalid
-	if (values)
-		return (0);
-	return (1);
+	t_value	*current;
+	int 	current_value;
+
+	current = *values;
+	while (current != NULL)
+	{
+		current_value = current->value;
+		t_value* temp = current->next;
+		while (temp != NULL)
+		{
+			if (temp->value == current_value)
+			{
+				// Duplicate found
+				ft_pntf("error dupe value at %i", current_value);
+				ft_clean(values);
+				return (0); // Invalid
+			}
+			temp = temp->next;
+		}
+		current = current->next;
+	}
+	ft_clean(values);
+	return 1; // Valid
 }
 
 t_value	*ft_init(int size, char **values)
