@@ -11,3 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_error(void)
+{
+	ft_printf("error\n");
+	exit(EXIT_FAILURE);
+}
+
+void	ft_allocation_failure(char *str)
+{
+	ft_printf("allocation failure : %s\n", str);
+	exit(EXIT_FAILURE);
+}

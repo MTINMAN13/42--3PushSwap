@@ -11,3 +11,40 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void
+	ft_lstitr(t_value *lst, void (*f)(void*))
+{
+	t_value	*node;
+	t_value	*next_node;
+
+	node = lst;
+	while (node->prev)
+		node = node->prev;
+	while (node)
+	{
+		next_node = node->next;
+		f(node);
+		node = next_node;
+	}
+	while (lst->prev)
+		lst = lst->prev;
+}
+
+// first becomes last
+void	ft_rotate(void *data)
+{
+	t_value	*node;
+
+	node = (t_value *)data;
+	node->s_index -= 1;
+}
+
+// last becomes first
+void	ft_reverse_rotate(void *data)
+{
+	t_value	*node;
+
+	node = (t_value *)data;
+	node->s_index += 1;
+}

@@ -84,4 +84,5 @@ int			ft_print_percent(void);
 int			ft_handle_s(char *string);
 int			ft_handle_c(int whatever);
 int			ft_printf(const char *to_be_printed, ...);
+int			ft_pntf(const char *to_be_printed, ...);
 #endif

@@ -63,14 +63,3 @@ int	ft_printf(const char *to_be_printed, ...)
 	va_end(conversions);
 	return (chars_printed);
 }
-// int	main(void)
-// {
-// 	int	target_dummy;
-
-// 	target_dummy = 1337;
-// 	ft_printf("DIGITS: %d", 69);
-// 	ft_printf("DIGITS: %i", 69);
-// 	ft_printf("POINTER: %p", target_dummy);
-// 	ft_printf("Length of Digits", ft_printf("DIGITS: %i", 69));
-// 	return(0);
-// }

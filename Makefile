@@ -1,35 +1,38 @@
 NAME = pushswap
-
-# PushSwap shows and illuminates real importance of immediate testing
-# Functions need to trully work on their own, creating a main for these
-# is invaluable, otherwise bugfixing takes agessssss
-
 DEF_COLOR = \033[0;39m
 CLR2 = \033[0;36m
 CLR1 = \033[0;37m
 
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
-SRC = push_swap.c
-OBJ = $(SRC_S:.c=.o)
+# Directories
+SRC_DIR =
+OBJ_DIR = obj
+INCLUDE = include
+
+# Sources
+SRC_FILES = push_swap push_a_initiate_stack push_error_handling push_a_start \
+			push_performone push_performtwo push_perform_moves push_algo_execute \
+			push_a_utils push_a_utils2 \
+			push_algo_find
+
+SRC = $(addsuffix .c, $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
 LIBFT = libft.a
 
-%.o: %.c
-		@$(CC) $(FLAGS) -c $< -o $@
+# Rule to compile .c files into .o files
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
-all :	pswp
-# 		@norminette push_swap.c push_swap.h
+# Rule to build the executable
+$(NAME): libft $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT)
+	@clear
+	@echo "$(CLR2)rdy$(DEF_COLOR)"
 
-test :	all
-		clear
-		./pushswap 600 594 066 32 984 2000 50000 45 65 98989
-
-pswp:	libft $(OBJ)
-		@ $(CC) $(FLAGS) -o $(NAME) $(SRC) $(LIBFT)
-		@echo "$(CLR2)rdy$(DEF_COLOR)"
 
 libft:
 		@ make -C libft/
@@ -50,10 +53,38 @@ fclean: clean
 		@sleep 1
 		@clear
 
-re: fclean all
+re: fclean all pushswap
+	@sleep 1
 
 norm:
 		@clear
 		@norminette push_swap.c push_swap.h
 
 .PHONY: all libft clean fclean re norm pswp
+
+test :	pushswap
+		clear
+		./pushswap 600 594 066 32 984 2000 50000 45 65 98989 asd wtf ixd
+
+t_desc :pushswap
+		clear
+		./pushswap 4 3 2
+
+t_5	 :	pushswap
+		clear
+		./pushswap 25 9 31 35 42
+
+random_number = $$(echo $$((1 + $$RANDOM % 163)))
+
+t_6	 :	pushswap
+		clear
+		./pushswap 25 38 5 6 14 15
+
+t_7	 :	pushswap
+		clear
+		./pushswap 681 395 164 3477 31 805 367
+
+t_t	 :	pushswap
+		clear
+		./pushswap $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number)
+
