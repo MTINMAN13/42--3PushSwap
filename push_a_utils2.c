@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_error_handling.c                              :+:      :+:    :+:   */
+/*   push_a_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:34:56 by mman              #+#    #+#             */
-/*   Updated: 2023/12/06 20:34:57 by mman             ###   ########.fr       */
+/*   Updated: 2023/12/19 00:15:30 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_clean(t_value **a)
 		(*a) = (*a)->prev;
 }
 
-int		ft_biggestvalueinstack(t_value **a)
+int	ft_biggestvalueinstack(t_value **a)
 {
 	int		holder;
 	t_value	*h;
@@ -35,12 +35,10 @@ int		ft_biggestvalueinstack(t_value **a)
 		}
 	}
 	(*a) = h;
-	// ft_pntf("i think biggest number in stack is %i", holder);
-	// fullstack(*a);
 	return (holder);
 }
 
-int		ft_smallestvalueinstack(t_value **a)
+int	ft_smallestvalueinstack(t_value **a)
 {
 	int		holder;
 	t_value	*h;
@@ -57,7 +55,15 @@ int		ft_smallestvalueinstack(t_value **a)
 		}
 	}
 	(*a) = h;
-	// ft_pntf("i think biggest number in stack is %i", holder);
-	// fullstack(*a);
 	return (holder);
+}
+
+t_value	*ft_last(t_value **x)
+{
+	t_value	*z;
+
+	z = *x;
+	while (z->next != 0)
+		z = z->next;
+	return (z);
 }

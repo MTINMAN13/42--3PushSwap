@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_o_moves.c                                     :+:      :+:    :+:   */
+/*   push_performone.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:35:19 by mman              #+#    #+#             */
-/*   Updated: 2023/12/11 20:35:21 by mman             ###   ########.fr       */
+/*   Updated: 2023/12/19 00:14:56 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_firsttolast(t_value **list)
 {
 	t_value	*first;
-	t_value *last;
+	t_value	*last;
 
 	first = ft_util_reset_head(list);
 	last = first;
@@ -36,7 +36,6 @@ void	ft_moves_ra(t_value **list)
 {
 	t_value	*crawl;
 
-	fullstack(*list);
 	crawl = ft_util_reset_head(list);
 	ft_firsttolast(&crawl);
 	ft_lstitr(crawl, ft_rotate);
@@ -47,8 +46,6 @@ void	ft_moves_ra(t_value **list)
 	ft_printf("ra\n");
 }
 
-// Swap the first 2 elements at the top of stack a.
-// Do nothing if there is only one or no elements.
 void	ft_moves_sa(t_value **list)
 {
 	t_value	*newtwo;
@@ -75,10 +72,10 @@ void	ft_moves_sa(t_value **list)
 		(*list) = (*list)->prev;
 }
 
-void ft_lasttofirst(t_value **list)
+void	ft_lasttofirst(t_value **list)
 {
 	t_value	*crawl;
-	t_value *last;
+	t_value	*last;
 
 	crawl = ft_util_reset_head(list);
 	last = crawl;
@@ -105,43 +102,4 @@ void	ft_moves_rra(t_value **list)
 		crawl = crawl->prev;
 	(*list) = crawl;
 	ft_printf("rra\n");
-}
-
-void	ft_moves_pb(t_value **a, t_value **b)
-{
-	t_value	*b_new;
-
-	ft_lstitr(*a, ft_reverse_rotate);
-	while ((*a)->prev)
-		(*a) = (*a)->prev;
-	while ((*b)->prev)
-		(*b) = (*b)->prev;
-	b_new = (*b)->next;
-	(*a)->prev = (*b);
-	(*b)->s_index = (*a)->s_index - 1;
-	(*b)->next = (*a);
-	if (b_new != 0)
-	{
-		b_new->prev = NULL;
-		ft_lstitr(b_new, ft_reverse_rotate);
-	}
-	(*b) = b_new;
-	while ((*a)->prev)
-		(*a) = (*a)->prev;
-	ft_pntf("pb");
-}
-
-void	ft_moves_rb(t_value **b)
-{
-	t_value	*crawl;
-
-	fullstack(*b);
-	crawl = ft_util_reset_head(b);
-	ft_firsttolast(&crawl);
-	ft_lstitr(crawl, ft_rotate);
-	while (crawl->prev)
-		crawl = crawl->prev;
-	(*b) = crawl;
-	ft_clean(b);
-	ft_printf("rb\n");
 }

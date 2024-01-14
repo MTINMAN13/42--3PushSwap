@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:25:06 by mman              #+#    #+#             */
-/*   Updated: 2023/10/28 21:54:44 by mman             ###   ########.fr       */
+/*   Updated: 2024/01/14 19:41:36 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 // return The converted value or 0 on error.
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		sign;
-	int		result;
+	long	result;
 	int		i;
 
 	result = 0;
