@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:35:19 by mman              #+#    #+#             */
-/*   Updated: 2024/01/13 16:44:24 by mman             ###   ########.fr       */
+/*   Updated: 2024/01/14 19:46:26 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_member
 {
 	int				value;
 	int				s_index;
+	int				cost;
 	struct s_member	*next;
 	struct s_member	*prev;
 }				t_value;

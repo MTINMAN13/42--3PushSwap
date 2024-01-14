@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:34:56 by mman              #+#    #+#             */
-/*   Updated: 2024/01/13 19:13:01 by mman             ###   ########.fr       */
+/*   Updated: 2024/01/14 19:45:29 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,39 @@ int	ft_checkifvalid(t_value **values)
 	return (1);
 }
 
+static void	ft_validator(char *values)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(values);
+	if (ft_atoi(values) > INT_MAX || ft_atoi(values) < INT_MIN)
+		ft_error();
+	while (len > i)
+	{
+		if (ft_isdigit((int)values[i]) == 0)
+			ft_error();
+		i++;
+	}
+	i = 0;
+}
+
+// assigns values to the structure, when parsed from a single stirng ""
 static t_value	*ft_parser(t_value	*head, char **values)
 {
 	char	**split;
 	int		i;
 
 	i = 1;
-	// TODO go through values[1] and look for non-integer (+ " " and "-")
+	ft_validator(values[1]);
 	split = ft_split(values[1], ' ');
 	if (split && *split)
 	{
-		ft_pntf("%c", *split[0]);
 		head = ft_new_head(ft_atoi(*split));
 		split++;
 		while (*split)
 		{
-			if (ft_isdigit(*split[0]) == 0)
-				ft_error();
 			ft_add_back(&head, ft_atoi(*split), i);
 			split++;
 			i++;
@@ -77,29 +93,15 @@ t_value	*ft_init(int size, char **values)
 	}
 	else
 	{
-		// TODO go through values and look for non-integer (+ " " and "-")
+		ft_validator(values[i]);
 		head = ft_new_head(ft_atoi(values[i]));
 		while (size > 2)
 		{
 			ft_add_back(&head, ft_atoi(values[i + 1]), i);
+			ft_validator(values[i + 1]);
 			size--;
 			i++;
 		}
 	}
 	return (head);
-}
-
-void	ft_free(t_value **head)
-{
-	t_value	*current;
-	t_value	*next_node;
-
-	current = *head;
-	while (current != NULL)
-	{
-		next_node = current->next;
-		free(current);
-		current = next_node;
-	}
-	*head = NULL;
 }

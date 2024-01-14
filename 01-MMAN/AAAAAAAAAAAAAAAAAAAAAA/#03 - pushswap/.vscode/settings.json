@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"span": "c",
-		"type_traits": "c"
+		"type_traits": "c",
+		"push_swap.h": "c",
+		"limits.h": "c"
 	}
 }

@@ -33,7 +33,7 @@ $(NAME): libft $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT)
 	@clear
 	@echo "$(CLR2)rdy$(DEF_COLOR)"
-
+all:	$(NAME)
 
 libft:
 		@ make -C libft/
@@ -58,7 +58,7 @@ fclean: clean
 		@sleep 1
 		@clear
 
-re: fclean all pushswap
+re: fclean all $(NAME)
 	@sleep 1
 
 .PHONY: all libft clean fclean re norm pswp test t_desc t_5 t_6 t_7 t_50 t_101 t_t
