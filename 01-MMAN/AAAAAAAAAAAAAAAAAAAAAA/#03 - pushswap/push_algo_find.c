@@ -6,22 +6,13 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:37:33 by mman              #+#    #+#             */
-/*   Updated: 2023/12/19 00:02:49 by mman             ###   ########.fr       */
+/*   Updated: 2024/01/14 20:51:16 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_findmove(t_value **a, t_value **b)
-{
-	if (*b)
-	{
-		if ((*b)->next)
-			ft_subfindmove(a, b);
-		ft_clean(b);
-	}
-}
-
+//finds the largest value and aligns the stacks in order to move them (only ra!)
 void	ft_subfindmove(t_value **a, t_value **b)
 {
 	t_value	*blast;
@@ -46,3 +37,16 @@ void	ft_subfindmove(t_value **a, t_value **b)
 	ft_clean(a);
 	ft_clean(b);
 }
+
+//add function utilizing the COST aspect of the t_value
+//go through each node in the t_value chain, assign cost
+void	ft_findmove(t_value **a, t_value **b)
+{
+	if (*b)
+	{
+		if ((*b)->next)
+			ft_subfindmove(a, b);
+		ft_clean(b);
+	}
+}
+
