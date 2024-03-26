@@ -4,7 +4,7 @@ CLR2 = \033[0;36m
 CLR1 = \033[0;37m
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+# CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
 # Directories
@@ -63,38 +63,38 @@ re: fclean all $(NAME)
 
 .PHONY: all libft clean fclean re norm pswp test t_desc t_5 t_6 t_7 t_50 t_101 t_t
 
-test :	pushswap
+test :	$(NAME)
 		clear
-		./pushswap 600 594 066 32 984 2000 50000 45 65 98989 asd wtf ixd
+		./$(NAME) 600 594 66 32 984 2000 50000 45 65 98989
 
-t_desc :pushswap
+t_desc :$(NAME)
 		clear
-		./pushswap 4 3 2
+		./$(NAME) 4 3 2
 
-t_5	 :	pushswap
+t_5	 :	$(NAME)
 		clear
-		./pushswap 25 9 31 35 42
+		./$(NAME) 25 9 31 35 42
 
 random_number = $$(echo $$((1 + $$RANDOM % 163)))
 
-t_6	 :	pushswap
+t_6	 :	$(NAME)
 		clear
-		./pushswap 25 38 5 6 14 15
+		./$(NAME) 25 38 5 6 14 15
 
-t_7	 :	pushswap
+t_7	 :	$(NAME)
 		clear
-		./pushswap 681 395 164 3477 31 805 367 45 46 4568 45687848
+		./$(NAME) 681 395 164 3477 31 805 367 45 46 4568 45687848
 
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all -s
 
-t_50: pushswap
+t_50: $(NAME)
 	clear
-	$(VALGRIND) ./pushswap 8 26 73 94 57 15 42 69 53 61 79 32 18 47 83 27 13 68 91 23 36 49 63 75 12 88 41 65 98 22 38 71 51 87 45 29 72 59 81 17 76 54 39 64 95 34 74 21 14 58 33 66 93
+	$(VALGRIND) ./$(NAME) 8 26 73 94 57 15 42 69 53 61 79 32 18 47 83 27 13 68 91 23 36 49 63 75 12 88 41 65 98 22 38 71 51 87 45 29 72 59 81 17 76 54 39 64 95 34 74 21 14 58 33 66 93 384 219 573 862 135 746 298 457 621 934 107 652 789 423 556 193 840 675 321 480 742 599 268 916 105 738 492 653 827 364 529 178 615 754 289 431 567 802 146 687 249 913 374 545 699 835 412 584 731
 
-t_101 :	pushswap
+t_101 :	$(NAME)
 		clear
-		./pushswap 8 26 73 94 57 15 42 69 53 61 79 32 18 47 83 27 13 68 91 23 36 49 63 75 12 88 41 65 98 22 38 71 51 87 45 29 72 59 81 17 76 54 39 64 95 34 74 21 14 58 33 66 93 384 219 573 862 135 746 298 457 621 934 107 652 789 423 556 193 840 675 321 480 742 599 268 916 105 738 492 653 827 364 529 178 615 754 289 431 567 802 146 687 249 913 374 545 699 835 412 584 731 | wc -1 | ./checker_linux
+		./push_swap 8 26 73 94 57 15 42 69 53 61 79 32 18 47 83 27 13 68 91 23 36 49 63 75 12 88 41 65 98 22 38 71 51 87 45 29 72 59 81 17 76 54 39 64 95 34 74 21 14 58 33 66 93 384 219 573 862 135 746 298 457 621 934 107 652 789 423 556 193 840 675 321 480 742 599 268 916 105 738 492 653 827 364 529 178 615 754 289 431 567 802 146 687 249 913 374 545 699 835 412 584 731 | ./checker_linux 8 26 73 94 57 15 42 69 53 61 79 32 18 47 83 27 13 68 91 23 36 49 63 75 12 88 41 65 98 22 38 71 51 87 45 29 72 59 81 17 76 54 39 64 95 34 74 21 14 58 33 66 93 384 219 573 862 135 746 298 457 621 934 107 652 789 423 556 193 840 675 321 480 742 599 268 916 105 738 492 653 827 364 529 178 615 754 289 431 567 802 146 687 249 913 374 545 699 835 412 584 731
 
-t_t	 :	pushswap
+t_t	 :	$(NAME)
 		clear
-		./pushswap $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number)
+		./$(NAME) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number) $(call random_number)

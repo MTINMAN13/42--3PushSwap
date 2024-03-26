@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:37:20 by mman              #+#    #+#             */
-/*   Updated: 2024/01/13 17:50:01 by mman             ###   ########.fr       */
+/*   Updated: 2024/03/26 20:53:57 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_algo_wrap(t_value **a, t_value **b)
 	ft_back_to_a(a, b);
 }
 
+//Needs polish
 void	ft_back_to_a(t_value **a, t_value **b)
 {
 	while ((*b) != 0)
