@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:34:56 by mman              #+#    #+#             */
-/*   Updated: 2024/01/13 18:27:07 by mman             ###   ########.fr       */
+/*   Updated: 2024/04/01 20:14:22 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_error(void)
 {
-	ft_printf("error\n");
+	ft_printf("Error\n");
 	exit(EXIT_FAILURE);
 }
 

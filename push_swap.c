@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by mman              #+#    #+#             */
-/*   Updated: 2024/03/27 00:30:26 by mman             ###   ########.fr       */
+/*   Updated: 2024/04/11 23:41:26 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	ft_checksorted(t_value *list)
 	return (0);
 }
 
+// the initial pushing from A to B is BROKEN. I want to already have shit in B in the descending order!
+// Right now, im pushing in absolute dogshit.
+
+// But it works, in the end. It is so not viable though. The cost assignments need to be FIXED.
+
 int	main(int argc, char *argv[])
 {
 	t_value	*a;
@@ -47,6 +52,7 @@ int	main(int argc, char *argv[])
 	{
 		ft_sort(&a);
 	}
+	fullstack(a);
 	ft_free(&a);
 	return (0);
 }

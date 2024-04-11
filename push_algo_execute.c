@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:37:20 by mman              #+#    #+#             */
-/*   Updated: 2024/03/26 20:53:57 by mman             ###   ########.fr       */
+/*   Updated: 2024/04/01 20:09:52 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_algo_b(t_value **a, t_value **b)
 	while (stacksize > 3)
 	{
 		ft_findmove(a, b);
-		ft_moves_pa(&movin, b);
+		ft_moves_pb(&movin, b);
 		stacksize--;
 	}
 	(*a) = movin;
@@ -42,7 +42,7 @@ void	ft_back_to_a(t_value **a, t_value **b)
 	while ((*b) != 0)
 	{
 		ft_sub_aligner(a, b);
-		ft_moves_pb(a, b);
+		ft_moves_pa(a, b);
 	}
 	if (!ft_checksorted(*a))
 	{
