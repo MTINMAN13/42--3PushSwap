@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:34:56 by mman              #+#    #+#             */
-/*   Updated: 2023/12/19 00:15:30 by mman             ###   ########.fr       */
+/*   Updated: 2024/04/01 18:43:14 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,21 @@ t_value	*ft_last(t_value **x)
 	while (z->next != 0)
 		z = z->next;
 	return (z);
+}
+
+int	ft_stack_size(t_value **entry_node)
+{
+	int		counter;
+	t_value	*buffer;
+
+	counter = 0;
+	buffer = *entry_node;
+	while (buffer->prev != 0)
+		buffer = buffer->prev;
+	while (buffer->next != 0)
+	{
+		buffer = buffer->next;
+		counter++;
+	}
+	return (counter);
 }

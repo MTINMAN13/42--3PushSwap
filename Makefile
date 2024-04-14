@@ -4,18 +4,18 @@ CLR2 = \033[0;36m
 CLR1 = \033[0;37m
 
 CC = cc
-# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
 # Directories
 SRC_DIR =
-OBJ_DIR = obj
+OBJ_DIR = obj/
 INCLUDE = include
 
 # Sources
 SRC_FILES = push_swap push_a_initiate_stack push_error_handling push_a_start \
 			push_performone push_performtwo push_perform_moves push_algo_execute \
-			push_a_utils push_a_utils2 push_a_utils_cleanups \
+			push_a_utils push_a_utils2 push_a_utils3 push_a_utils_cleanups \
 			push_struct \
 			push_algo_find
 
@@ -26,12 +26,13 @@ LIBFT = libft.a
 
 # Rule to compile .c files into .o files
 $(OBJ_DIR)/%.o: %.c
+	mkdir -p $(OBJ_DIR)  # Create the directory if it doesn't exist
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 # Rule to build the executable
 $(NAME): libft $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $(OBJ) $(LIBFT)
-	@clear
+# @clear
 	@echo "$(CLR2)rdy$(DEF_COLOR)"
 all:	$(NAME)
 
@@ -44,17 +45,18 @@ norm:
 
 clean:
 		@ $(RM) $(OBJ)
+		@ $(RM) $(OBJ)
 		@ $(RM) $(NAME)
-		@echo "$(CLR1)               pushswap wiped! have a nice day ;-)$(DEF_COLOR)"
-		@echo "$(CLR2)               please recompile to proceed.$(DEF_COLOR)"
+		@echo "$(CLR1)        pushswap wiped! have a nice day ;-)$(DEF_COLOR)"
+		@echo "$(CLR2)        please recompile to proceed.$(DEF_COLOR)"
 		@sleep 1
 
 fclean: clean
 		@ $(RM) $(NAME)
-		@ $(RM) libft.maka
+		@ $(RM) libft.a
 		@ make -C libft/ clean
 		@clear
-		@echo "$(CLR1)               all wiped boss! have a nice day ;-)$(DEF_COLOR)"
+		@echo "$(CLR1)        all wiped boss! have a nice day ;-)$(DEF_COLOR)"
 		@sleep 1
 		@clear
 
@@ -65,7 +67,7 @@ re: fclean all $(NAME)
 
 test :	$(NAME)
 		clear
-		./$(NAME) 600 594 66 32 984 2000 50000 45 65 98989
+		./$(NAME) 600 594 66 32 984 2000 50000 45 65 98989 | ./checker_linux 600 594 66 32 984 2000 50000 45 65 98989
 
 t_desc :$(NAME)
 		clear
