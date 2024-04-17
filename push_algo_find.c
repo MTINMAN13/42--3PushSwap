@@ -13,33 +13,51 @@
 #include "push_swap.h"
 
 //enters the node which we search the value for  ++ and B
-static void	ft_cost_assigner(t_value *node, t_value **a, t_value **b)
+void ft_cost_assigner(t_value *node, t_value **a, t_value **b)
 {
-	t_value	*b_node;
-	t_value	*buffer;
-	int		i;
-	int		a_size;
-	int		b_size;
+    t_value *b_node;
+    int     i;
+    int     a_size;
 
-	i = 0;
-	a_size = ft_stack_size(a);
-	if ((*b) != 0 && (*b)->next && (*b)->next->next)
-	{
-		buffer = *b;
-		b_node = (*b);
-		ft_clean(&b_node);
-		while ((b_node->next))
-		{
-			b_node->s_index = i;
-			i++;
-			b_node = b_node->next;
-		}
-		b_node->s_index = i;
-		b_size = i;
-		ft_clean(&b_node);
-		ft_subcostassigner(node, b_node, a_size, b);
-	}
+    i = 0;
+    a_size = ft_stack_size(a);
+    if ((*b) && (*b)->next)
+    {
+        b_node = (*b); // Removed unnecessary 'buffer' variable
+        while ((b_node->next))
+        {
+            b_node->s_index = i;
+            i++;
+            b_node = b_node->next;
+        }
+        b_node->s_index = i;
+        ft_clean(&b_node);
+        ft_subcostassigner(node, b_node, a_size, b);
+    }
 }
+
+// b_node will be the one we look for 
+void	ft_subcostassigner(t_value *node, t_value *b_node
+	, int a_size, t_value **b)
+{
+	int	b_size;
+
+	b_node = ft_search_by_value(b, ft_find_closest_smaller(b, node->value));
+	b_size = ft_stack_size(b);
+	a_size = ft_stack_size(&node);
+	b_node->move_up = b_node->s_index;
+	b_node->mover_two = b_size - b_node->s_index;
+	node->b_value = b_node->value;
+	node->move_up = node->s_index - 100;
+	node->mover_two = a_size - node->s_index + 200;
+	// if (node->move_up < node->mover_two && b_node->move_up <= node->move_up)
+	// 	node->cost = node->move_up;
+	// else
+	// // 	node->cost = node->mover_two;
+	// ft_pntf("Cost assigned to %i   is %i up and %i down", node->value, node->move_up, node->mover_two);
+}
+
+
 
 void	ft_cost_assigner_macro(t_value **a, t_value **b)
 {
@@ -56,60 +74,85 @@ void	ft_cost_assigner_macro(t_value **a, t_value **b)
 		nodee = next_node;
 	}
 	ft_cost_assigner(nodee, a, b);
-	while ((*a)->prev)
-		(*a) = (*a)->prev;
+	ft_clean(a);
+	ft_clean(b);
 }
 
-int	ft_lowest_value(t_value **a)
+t_value *ft_lowest_cost(t_value **a)
 {
-	t_value	*buffer;
-	int		i;
+    t_value *buffer;
+    t_value *lowest_node; 
+    int     current_cheapest;
 
-	buffer = *a;
-	i = buffer->cost;
-	while (buffer->next != 0)
-	{
-		if (buffer->cost < i)
-			i = buffer->cost;
-		buffer = buffer->next;
-	}
-	return (i);
+    buffer = *a;
+    current_cheapest = INT_MAX;
+    lowest_node = NULL;  
+
+    if (buffer->cost == 0)  // Check for special case?
+        return (buffer); 
+
+    while (buffer->next != 0)
+    {
+        if (buffer->cost < current_cheapest)
+        {
+            current_cheapest = buffer->cost;
+            lowest_node = buffer; 
+        }
+        buffer = buffer->next;
+    }
+
+    return (lowest_node); 
 }
 
 //a's have some value(cost) -- i want to find the
 void	ft_subfindmove(t_value **a, t_value **b)
 {
-	int	cheapest;
-	int	direction;
-	int	b_head;
+	t_value	*a_wil_be_moved;
+	int		direction;
+	int		b_head_value;
 
-	cheapest = ft_lowest_value(a);
-	b_head = ft_util_b_value_cheapest(a, cheapest);
+	a_wil_be_moved = ft_lowest_cost(a);
+	b_head_value = ft_find_closest_smaller(b, a_wil_be_moved->value);
+	ft_pntf("A shall be %i and B shell be %i", a_wil_be_moved->value, b_head_value);
+	ft_pntf("A shall is  %i and B shell is %i", (*a)->value, (*b)->value);
 	direction = ft_direction(a);
+	ft_pntf("direction shall be %i", direction);
+	// printf("%i -- a_will_be_moved ; %i -- b_head_value\n", a_wil_be_moved->value, b_head_value);
+	if (direction)
 	{
-		if (direction)
+		while ((*b)->value != b_head_value && (*a)->value != a_wil_be_moved->value)
 		{
-			while ((*a)->value != cheapest)
-			{
-				while ((*b)->value != b_head)
-					ft_moves_rr(a, b);
-				ft_moves_ra(a);
-			}
+				ft_clean(a);
+				ft_clean(b);
+				ft_moves_rr(b, a);
 		}
-		else
-			ft_subsubfindmove(a, b, cheapest, b_head);
+		while (!((*a)->value == a_wil_be_moved->value))
+		{
+			ft_clean(a);
+			ft_clean(b);
+			ft_moves_ra(a);
+		}
+		while (!((*b)->value == b_head_value))
+		{
+			ft_clean(b);
+			ft_moves_rb(b);
+		}
 	}
+	else if (direction == 0)
+		ft_subsubfindmove(a, b, a_wil_be_moved->value, b_head_value);
 }
 
 //add function utilizing the COST aspect of the t_value
+//allign the two nodes and than when findmove exits, it does pb
 //go through each node in the t_value chain, assign cost
 void	ft_findmove(t_value **a, t_value **b)
 {
-	ft_cost_assigner_macro(a, b);
-	if (*b && (*b)->next && (*b)->next->next)
+	ft_clean(a);
+	if (*b && (*b)->next)
 	{
-		if ((*b)->next != 0)
-			ft_subfindmove(a, b);
-		ft_clean(b);
+		ft_cost_assigner_macro(a, b);
+		ft_subfindmove(a, b);
 	}
+	if (*b)
+		ft_clean(b);
 }

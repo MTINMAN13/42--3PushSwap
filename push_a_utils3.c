@@ -14,22 +14,27 @@
 
 //takes in stack, and value representing the current cheapest-to-move item
 // returns the b_value of that field
-int	ft_util_b_value_cheapest(t_value **stack, int searched_index)
+//it must be closest smaller than searched index
+// go in the stack and find closest smaller value
+int	ft_find_closest_smaller(t_value **stack, int searched_index)
 {
 	t_value	*first;
-	int		current_i;
+	int		current_smallest;
 
-	current_i = INT_MIN;
+	current_smallest = INT_MIN;
 	if (!stack || searched_index < -1)
 		ft_error();
 	first = (*stack);
-	ft_clean(&first);
-	while (first->value != searched_index && first->next)
+	while (first->next != NULL)
 	{
+		if (first->value > current_smallest && first->value < searched_index)
+			current_smallest = first->value;
 		first = first->next;
 	}
-	current_i = first->b_value;
-	return (current_i);
+	if (current_smallest == INT_MIN)
+		current_smallest = ft_biggestvalueinstack(stack);
+	// printf("current closest smallest to %i is %i\n", searched_index, current_smallest);
+	return (current_smallest);
 }
 
 // up = 1;  down = 0 (reverse);
@@ -40,7 +45,7 @@ int	ft_direction(t_value **a)
 	int		up;
 	int		down;
 
-	value = ft_lowest_value(a);
+	value = ft_lowest_cost(a)->value;
 	buffer = *a;
 	ft_clean(&buffer);
 	up = buffer->move_up;
@@ -58,40 +63,12 @@ int	ft_direction(t_value **a)
 	return (-1);
 }
 
-void	ft_subsubfindmove(t_value **a, t_value **b, int x, int y)
+void	ft_subsubfindmove(t_value **a, t_value **b, int moving_a_value, int moving_b_value)
 {
-	while ((*a)->cost != x)
+	while ((*a)->value != moving_a_value)
 	{
-		while ((*b)->value != y)
-			ft_moves_rrr(a, b);
+		while ((*b)->value != moving_b_value)
+			// ft_moves_rrr(a, b);
 		ft_moves_rra(a);
 	}
-}
-
-void	ft_subcostassigner(t_value *node, t_value *b_node
-	, int a_size, t_value **b)
-{
-	int	b_size;
-
-	b_size = ft_stack_size(b);
-	while ((b_node->value < node->value && b_node->next)
-		|| b_node->next != 0)
-		b_node = b_node->next;
-	if (b_node->value > node->value)
-	{
-		while (b_node->value != ft_smallestvalueinstack(b))
-			b_node = b_node->prev;
-	}
-	b_node->move_up = b_node->s_index;
-	b_node->mover_two = b_size - b_node->s_index;
-	node->b_value = b_node->value;
-	node->move_up = node->s_index;
-	node->mover_two = a_size - node->s_index;
-	if (node->move_up < node->mover_two && b_node->move_up <= node->move_up)
-		node->cost = node->move_up;
-	else if (node->move_up > node->mover_two
-		&& b_node->mover_two <= node->mover_two)
-		node->cost = node->mover_two;
-	else
-		node->cost = b_node->mover_two;
 }

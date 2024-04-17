@@ -31,8 +31,7 @@ void	ft_firsttolast(t_value **list)
 	first->s_index = last->s_index + 1;
 }
 
-// The first element becomes the last one.
-void	ft_moves_ra(t_value **list)
+void	ft_m_ra(t_value **list)
 {
 	t_value	*crawl;
 
@@ -43,6 +42,13 @@ void	ft_moves_ra(t_value **list)
 		crawl = crawl->prev;
 	(*list) = crawl;
 	ft_clean(list);
+}
+
+
+// The first element becomes the last one.
+void	ft_moves_ra(t_value **list)
+{
+	ft_m_ra(list);
 	ft_printf("ra\n");
 }
 

@@ -14,19 +14,15 @@
 
 void	ft_algo_b(t_value **a, t_value **b)
 {
-	t_value	*movin;
 	int		stacksize;
 
-	movin = *a;
 	stacksize = ft_util_stacksize(*a);
 	while (stacksize > 3)
 	{
 		ft_findmove(a, b);
-		ft_moves_pb(&movin, b);
+		ft_moves_pb(a, b);
 		stacksize--;
 	}
-	(*a) = movin;
-	ft_clean(a);
 }
 
 void	ft_algo_wrap(t_value **a, t_value **b)

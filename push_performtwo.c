@@ -14,30 +14,34 @@
 
 void	ft_moves_pb(t_value **a, t_value **b)
 {
-	t_value	*crawl;
 	t_value	*a_new;
 
-	crawl = *a;
-	a_new = crawl->next;
-	if ((*b) == 0)
-	{
-		(*b) = (*a);
-		a_new->prev = NULL;
-		(*b)->next = NULL;
-		ft_lstitr(a_new, ft_rotate);
-		(*a) = a_new;
+	ft_clean(a);
+	// ft_pntf("i will be moving %i", (*a)->value);
+	a_new = (*a)->next;
+	if (*b)
+	{	
+		ft_clean(b);
+		ft_lstitr(*b, ft_reverse_rotate);
+		(*a)->next = (*b);
+		(*b)->prev = (*a);
 	}
 	else
 	{
-		ft_lstitr((*b), ft_reverse_rotate);
-		crawl->next = (*b);
-		(*b)->prev = crawl;
-		a_new->prev = NULL;
-		ft_lstitr(a_new, ft_rotate);
-		(*a) = a_new;
+		(*b) = (*a);
+		(*b)->next = NULL;
+		(*b)->prev = NULL;
 	}
-	ft_clean(a);
-	ft_clean(b);
+	(*a)->s_index = (*b)->s_index - 1;
+	if (a_new != 0)
+	{
+		a_new->prev = NULL;
+		ft_lstitr(a_new, ft_reverse_rotate);
+	}
+	(*a) = a_new;
+	while ((*b)->prev)
+		(*b) = (*b)->prev;
+	// ft_pntf("new head is %i", (*a)->value);
 	ft_pntf("pb");
 }
 
@@ -67,6 +71,12 @@ void	ft_moves_pa(t_value **a, t_value **b)
 
 void	ft_moves_rb(t_value **b)
 {
+	ft_m_rb(b);
+	ft_printf("rb\n");
+}
+
+void	ft_m_rb(t_value **b)
+{
 	t_value	*crawl;
 
 	crawl = ft_util_reset_head(b);
@@ -76,28 +86,12 @@ void	ft_moves_rb(t_value **b)
 		crawl = crawl->prev;
 	(*b) = crawl;
 	ft_clean(b);
-	ft_printf("rb\n");
 }
 
 void	ft_moves_rr(t_value **a, t_value **b)
 {
-	t_value	*crawl;
-	t_value	*crawlb;
-
-	crawl = ft_util_reset_head(a);
-	ft_firsttolast(&crawl);
-	ft_lstitr(crawl, ft_rotate);
-	while (crawl->prev)
-		crawl = crawl->prev;
-	(*a) = crawl;
-	ft_clean(a);
-	crawlb = ft_util_reset_head(b);
-	ft_firsttolast(&crawl);
-	ft_lstitr(crawlb, ft_rotate);
-	while (crawlb->prev)
-		crawlb = crawlb->prev;
-	(*b) = crawlb;
-	ft_clean(b);
+	ft_m_rb(b);
+	ft_m_ra(a);
 	ft_printf("rr\n");
 }
 

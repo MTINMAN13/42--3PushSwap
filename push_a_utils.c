@@ -86,6 +86,23 @@ t_value	*ft_search_by_index(t_value **stack, int searched_index)
 	return (first);
 }
 
+t_value	*ft_search_by_value(t_value **stack, int searched_index)
+{
+	t_value	*first;
+	int		current_i;
+
+	current_i = INT_MIN;
+	if (!stack || searched_index < -1)
+		ft_error();
+	first = ft_util_reset_head(stack);
+	while (current_i != searched_index)
+	{
+		current_i = first->value;
+		first = first->next;
+	}
+	return (first);
+}
+
 void	ft_check_descending(t_value **b)
 {
 	t_value	*crawl;

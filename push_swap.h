@@ -48,9 +48,10 @@ void	free_split_result(char **split_result);
 int		ft_biggestvalueinstack(t_value **a);
 int		ft_smallestvalueinstack(t_value **a);
 int		ft_stack_size(t_value **entry_node);
-int		ft_lowest_value(t_value **a);
+t_value	*ft_lowest_cost(t_value **a);
 int		ft_direction(t_value **a);
-int		ft_util_b_value_cheapest(t_value **stack, int searched_index);
+int		ft_find_closest_smaller(t_value **stack, int searched_index);
+void 	ft_cost_assigner(t_value *node, t_value **a, t_value **b);
 void	ft_subcostassigner(t_value *node, t_value *b_node,
 			int a_size, t_value **b);
 
@@ -73,6 +74,9 @@ void	ft_reverse_rotate(void *data);
 void	ft_lstitr(t_value *lst, void (*f)(void*));
 
 // the moves
+void	ft_m_rb(t_value **b);
+void	ft_m_ra(t_value **list);
+
 void	ft_moves_ra(t_value **list);
 void	ft_moves_rr(t_value **a, t_value **b);
 void	ft_moves_rrr(t_value **a, t_value **b);

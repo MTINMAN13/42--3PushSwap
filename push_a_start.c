@@ -67,5 +67,6 @@ void	ft_algo_perform(t_value **a)
 	size = ft_util_stacksize(*a);
 	if (size > 3)
 		ft_algo_b(a, &b);
-	ft_algo_wrap(a, &b);
+	fullstack(b);
+	// ft_algo_wrap(a, &b);
 }

@@ -35,6 +35,7 @@ int	ft_biggestvalueinstack(t_value **a)
 		}
 	}
 	(*a) = h;
+	ft_clean(a);
 	return (holder);
 }
 
@@ -75,8 +76,7 @@ int	ft_stack_size(t_value **entry_node)
 
 	counter = 0;
 	buffer = *entry_node;
-	while (buffer->prev != 0)
-		buffer = buffer->prev;
+	ft_clean(&buffer);
 	while (buffer->next != 0)
 	{
 		buffer = buffer->next;
