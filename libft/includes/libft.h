@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 17:18:00 by mman              #+#    #+#             */
-/*   Updated: 2024/01/14 19:41:29 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 21:05:30 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 long		ft_atoi(const char *str);
+long		ft_atol(const char *str);
 int			ft_atoi_base(char *str, char *base);
 void		*ft_calloc(size_t count, size_t size);
 int			ft_isalnum(int c);

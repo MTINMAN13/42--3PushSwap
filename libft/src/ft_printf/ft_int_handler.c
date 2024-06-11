@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 21:17:42 by mman              #+#    #+#             */
-/*   Updated: 2023/11/20 21:23:04 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:06:49 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ long long	ft_numlen(long n, int base)
 	while (n && ++count)
 		n /= base;
 	return (count);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!(s))
-		return ;
-	while (*s)
-	{
-		write(fd, s, 1);
-		s++;
-	}
 }
 
 void	ft_print_u(long n)

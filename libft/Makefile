@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apple <apple@student.42.fr>                +#+  +:+       +#+         #
+#    By: mman <mman@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 20:04:35 by apple             #+#    #+#              #
-#    Updated: 2023/10/28 16:36:28 by apple            ###   ########.fr        #
+#    Updated: 2024/06/11 21:08:37 by mman             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ FTPUT_DIR	=	ft_put/
 FTPUT		=	ft_putchar_fd ft_putendl_fd ft_putnbr_fd ft_putstr_fd
 
 FTTO_DIR	=	ft_to/
-FTTO		=	ft_atoi ft_itoa ft_tolower ft_toupper ft_atoi_base
+FTTO		=	ft_atoi ft_atol ft_itoa ft_tolower ft_toupper ft_atoi_base
 
 FTSTR_DIR	=	ft_str/
 FTSTR		=	ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
@@ -111,4 +111,4 @@ re:			fclean all
 norm:
 	@norminette $(SRCS) $(INCLUDES) | grep -v Norme -B1 || true
 
-.PHONY:		all clean fclean re norm
+.PHONY:		all clean fclean re norm $(NAME) $(OBJSF)
