@@ -6,15 +6,12 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 18:12:51 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 23:23:17 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:49:21 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/// @brief 
-/// @param stack_a 
-/// @param stack_b 
 void	ft_get_distance(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*aux_b;

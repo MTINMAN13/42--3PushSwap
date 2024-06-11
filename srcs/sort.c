@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:47 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 23:24:16 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:48:44 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ void	ft_shoveb(t_stack **stack_a, t_stack **stack_b)
 
 /**
 shifts stack depending on where the lowest index is
+ensures the stack is in the right order
  */
-void	ft_rearrange_stack(t_stack **stack)
+void	ft_fin(t_stack **stack)
 {
 	int	size;
 	int	lowest_id_pos;
@@ -94,5 +95,5 @@ void	ft_algo(t_stack **stack_a, t_stack **stack_b)
 		ft_perform_cheapest_move(stack_a, stack_b);
 	}
 	if (!ft_is_sorted(*stack_a))
-		ft_rearrange_stack(stack_a);
+		ft_fin(stack_a);
 }

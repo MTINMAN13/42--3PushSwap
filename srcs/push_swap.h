@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:11 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 23:23:46 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:47:53 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b);
 int		ft_is_sorted(t_stack *stack);
 void	ft_shoveb(t_stack **stack_a, t_stack **stack_b);
 void	ft_algo(t_stack **stack_a, t_stack **stack_b);
-void	ft_rearrange_stack(t_stack **stack);
+void	ft_fin(t_stack **stack);
 // setinit
 t_stack	*ft_init(int argc, char **argv);
 t_stack	*ft_init_stack_a(char **nbrs);
