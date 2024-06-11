@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:53 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:17 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:13:27 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_printerror(char *str)
 	exit(0);
 }
 
-void	free_stack(t_stack **stack)
+void	ft_free_stack(t_stack **stack)
 {
 	t_stack	*tmp;
 
@@ -34,7 +34,7 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	print_stack(t_stack *stack)
+void	fullstack(t_stack *stack)
 {
 	t_stack	*aux;
 
@@ -52,7 +52,7 @@ void	print_stack(t_stack *stack)
 		ft_printf("Empty stock\n");
 }
 
-void	print_stack_tg(t_stack *stack)
+void	fullstack_two_tg(t_stack *stack)
 {
 	t_stack	*aux;
 

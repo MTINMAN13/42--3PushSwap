@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 18:12:51 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:41 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:23:17 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 /// @brief 
 /// @param stack_a 
 /// @param stack_b 
-void	get_distance(t_stack **stack_a, t_stack **stack_b)
+void	ft_get_distance(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*aux_b;
 	int		size_a;
 	int		size_b;
 
 	aux_b = *stack_b;
-	size_a = stack_lenght(stack_a);
-	size_b = stack_lenght(stack_b);
+	size_a = ft_stacksize(stack_a);
+	size_b = ft_stacksize(stack_b);
 	while (aux_b)
 	{
 		aux_b->dist_b = aux_b->pos;
@@ -36,7 +36,8 @@ void	get_distance(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	do_move(t_stack **stack_a, t_stack **stack_b, int dist_a, int dist_b)
+void	ft_move_one(t_stack **stack_a,
+			t_stack **stack_b, int dist_a, int dist_b)
 {
 	if (dist_a < 0 && dist_b < 0)
 	{
@@ -69,7 +70,7 @@ int	ft_absolute_value(int n)
 	return (n);
 }
 
-void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
+void	ft_perform_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*aux_b;
 	int		dist_a;
@@ -90,5 +91,5 @@ void	do_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 		}
 		aux_b = aux_b->next;
 	}
-	do_move(stack_a, stack_b, dist_a, dist_b);
+	ft_move_one(stack_a, stack_b, dist_a, dist_b);
 }

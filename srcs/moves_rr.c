@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 20:37:33 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:58 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:11:48 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_rx(t_stack **stack, char x)
 	if (*stack == NULL)
 		return ;
 	node_1 = *stack;
-	node_lst = node_last(*stack);
+	node_lst = ft_getlast(*stack);
 	*stack = (*stack)->next;
 	node_lst->next = node_1;
 	node_1->next = NULL;

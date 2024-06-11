@@ -6,13 +6,13 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:35 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 23:07:06 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:20:17 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stacka(char **nbrs)
+t_stack	*ft_init_stack_a(char **nbrs)
 {
 	int		i;
 	t_stack	*stack;
@@ -23,16 +23,16 @@ t_stack	*init_stacka(char **nbrs)
 	i = 0;
 	while (nbrs[i] != NULL)
 	{
-		node = node_new(nbrs[i]);
-		node->index = set_index(nbrs[i], nbrs);
-		node_addback(&stack, node);
+		node = ft_addnew(nbrs[i]);
+		node->index = ft_assign_index(nbrs[i], nbrs);
+		ft_node_addback(&stack, node);
 		i++;
 	}
 	stack->size_start = i;
 	return (stack);
 }
 
-int	set_index(char *nbr, char **nbrs)
+int	ft_assign_index(char *nbr, char **nbrs)
 {
 	int	i;
 	int	index;
@@ -90,7 +90,7 @@ int	ft_freematrix(char ***matrix)
 	return (EXIT_SUCCESS);
 }
 
-t_stack	*chkargs_initstack(int argc, char **argv)
+t_stack	*ft_init(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	char	**nbrs;
@@ -104,7 +104,7 @@ t_stack	*chkargs_initstack(int argc, char **argv)
 	{
 		nbrs = ft_split(argv[1], ' ');
 		ft_chkstr(nbrs);
-		stack_a = init_stacka(nbrs);
+		stack_a = ft_init_stack_a(nbrs);
 		ft_freematrix(&nbrs);
 	}
 	else
@@ -113,7 +113,7 @@ t_stack	*chkargs_initstack(int argc, char **argv)
 		nbrs = ft_split(str, ' ');
 		free(str);
 		ft_chkstr(nbrs);
-		stack_a = init_stacka(nbrs);
+		stack_a = ft_init_stack_a(nbrs);
 		ft_freematrix(&nbrs);
 	}
 	return (stack_a);

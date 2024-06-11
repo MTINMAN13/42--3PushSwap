@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:40 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:25 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:21:36 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	sort_2(t_stack **stack)
 		ft_rx(stack, 'a');
 }
 
-void	sort_3(t_stack **stack)
+void	ft_lastthree(t_stack **stack)
 {
 	int	higher;
 
-	higher = get_higher_index_position(stack);
+	higher = ft_get_higher_index_position(stack);
 	if (higher == 0)
 		ft_rx(stack, 'a');
 	else if (higher == 1)
@@ -35,7 +35,7 @@ void	sort_4(t_stack	**stack_a, t_stack **stack_b)
 {
 	int	smaller;
 
-	smaller = get_lowest_index_position(stack_a);
+	smaller = ft_get_lowest_index_position(stack_a);
 	if (smaller > 1)
 	{
 		while (smaller < 4)
@@ -52,10 +52,10 @@ void	sort_4(t_stack	**stack_a, t_stack **stack_b)
 			smaller--;
 		}
 	}
-	if (is_sorted(*stack_a))
+	if (ft_is_sorted(*stack_a))
 		return ;
 	ft_pushb(stack_a, stack_b);
-	sort_3(stack_a);
+	ft_lastthree(stack_a);
 	ft_pusha(stack_a, stack_b);
 }
 
@@ -63,7 +63,7 @@ void	sort_5(t_stack	**stack_a, t_stack **stack_b)
 {
 	int	smaller;
 
-	smaller = get_lowest_index_position(stack_a);
+	smaller = ft_get_lowest_index_position(stack_a);
 	if (smaller > 1)
 	{
 		while (smaller < 5)
@@ -80,7 +80,7 @@ void	sort_5(t_stack	**stack_a, t_stack **stack_b)
 			smaller--;
 		}
 	}
-	if (is_sorted(*stack_a))
+	if (ft_is_sorted(*stack_a))
 		return ;
 	ft_pushb(stack_a, stack_b);
 	sort_4(stack_a, stack_b);
@@ -92,7 +92,7 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b)
 	if ((*stack_a)->size_start == 2)
 		sort_2(stack_a);
 	if ((*stack_a)->size_start == 3)
-		sort_3(stack_a);
+		ft_lastthree(stack_a);
 	if ((*stack_a)->size_start == 4)
 		sort_4(stack_a, stack_b);
 	if ((*stack_a)->size_start == 5)

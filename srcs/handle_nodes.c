@@ -6,13 +6,13 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:34:56 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:53:38 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:11:57 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_lenght(t_stack **stack)
+int	ft_stacksize(t_stack **stack)
 {
 	int		i;
 	t_stack	*aux;
@@ -29,7 +29,7 @@ int	stack_lenght(t_stack **stack)
 	return (i);
 }
 
-void	node_addback(t_stack **stack, t_stack *node)
+void	ft_node_addback(t_stack **stack, t_stack *node)
 {
 	if (node != 0)
 	{
@@ -39,11 +39,11 @@ void	node_addback(t_stack **stack, t_stack *node)
 			(*stack)->next = NULL;
 		}
 		else
-			node_last(*stack)->next = node;
+			ft_getlast(*stack)->next = node;
 	}
 }
 
-t_stack	*node_last(t_stack *stack)
+t_stack	*ft_getlast(t_stack *stack)
 {
 	if (!stack)
 		return (0);
@@ -52,7 +52,7 @@ t_stack	*node_last(t_stack *stack)
 	return (stack);
 }
 
-t_stack	*node_new(char *nbr)
+t_stack	*ft_addnew(char *nbr)
 {
 	t_stack	*new_node;
 

@@ -6,13 +6,13 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:30:47 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:23 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:24:16 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_stack *stack)
+int	ft_is_sorted(t_stack *stack)
 {
 	t_stack	*aux;
 
@@ -28,13 +28,13 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	pushall_lessthree(t_stack **stack_a, t_stack **stack_b)
+void	ft_shoveb(t_stack **stack_a, t_stack **stack_b)
 {
 	int	i;
 	int	pushed;
 	int	size;
 
-	size = stack_lenght(stack_a);
+	size = ft_stacksize(stack_a);
 	i = 0;
 	pushed = 0;
 	while (i < size && pushed < (size / 2))
@@ -55,13 +55,16 @@ void	pushall_lessthree(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	shift_stack(t_stack **stack)
+/**
+shifts stack depending on where the lowest index is
+ */
+void	ft_rearrange_stack(t_stack **stack)
 {
 	int	size;
 	int	lowest_id_pos;
 
-	size = stack_lenght(stack);
-	lowest_id_pos = get_lowest_index_position(stack);
+	size = ft_stacksize(stack);
+	lowest_id_pos = ft_get_lowest_index_position(stack);
 	if (lowest_id_pos > size / 2)
 	{
 		while (lowest_id_pos < size)
@@ -80,16 +83,16 @@ void	shift_stack(t_stack **stack)
 	}
 }
 
-void	main_sort(t_stack **stack_a, t_stack **stack_b)
+void	ft_algo(t_stack **stack_a, t_stack **stack_b)
 {
-	pushall_lessthree(stack_a, stack_b);
-	sort_3(stack_a);
+	ft_shoveb(stack_a, stack_b);
+	ft_lastthree(stack_a);
 	while (*stack_b)
 	{
-		set_pos_targ(stack_a, stack_b);
-		get_distance(stack_a, stack_b);
-		do_cheapest_move(stack_a, stack_b);
+		ft_set_target_pos(stack_a, stack_b);
+		ft_get_distance(stack_a, stack_b);
+		ft_perform_cheapest_move(stack_a, stack_b);
 	}
-	if (!is_sorted(*stack_a))
-		shift_stack(stack_a);
+	if (!ft_is_sorted(*stack_a))
+		ft_rearrange_stack(stack_a);
 }

@@ -6,7 +6,7 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 21:32:30 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:46 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:10:41 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_swap(t_stack **stack, char x)
 	t_stack	*aux_2;
 	t_stack	*aux_3;
 
-	l = stack_lenght(stack);
+	l = ft_stacksize(stack);
 	aux_1 = *stack;
 	aux_2 = (*stack)->next;
 	aux_3 = ((*stack)->next)->next;

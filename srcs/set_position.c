@@ -6,13 +6,13 @@
 /*   By: mman <mman@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 18:11:50 by mman              #+#    #+#             */
-/*   Updated: 2024/06/11 22:55:37 by mman             ###   ########.fr       */
+/*   Updated: 2024/06/11 23:21:36 by mman             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	get_position(t_stack **stack)
+void	ft_get_position(t_stack **stack)
 {
 	t_stack	*aux;
 	int		pos;
@@ -27,14 +27,14 @@ void	get_position(t_stack **stack)
 	}
 }
 
-int	get_higher_index_position(t_stack **stack)
+int	ft_get_higher_index_position(t_stack **stack)
 {
 	t_stack	*aux;
 	int		higher_pos;
 	int		higher_index;
 
 	aux = *stack;
-	get_position(stack);
+	ft_get_position(stack);
 	higher_index = INT_MIN;
 	higher_pos = aux->pos;
 	while (aux)
@@ -49,14 +49,14 @@ int	get_higher_index_position(t_stack **stack)
 	return (higher_pos);
 }
 
-int	get_lowest_index_position(t_stack **stack)
+int	ft_get_lowest_index_position(t_stack **stack)
 {
 	t_stack	*aux;
 	int		lowest_pos;
 	int		lowest_index;
 
 	aux = *stack;
-	get_position(stack);
+	ft_get_position(stack);
 	lowest_index = INT_MAX;
 	lowest_pos = aux->pos;
 	while (aux)
@@ -71,7 +71,7 @@ int	get_lowest_index_position(t_stack **stack)
 	return (lowest_pos);
 }
 
-int	get_target(t_stack **stack_a, int index_b, int t_index, int t_pos)
+int	ft_get_target(t_stack **stack_a, int index_b, int t_index, int t_pos)
 {
 	t_stack	*aux_a;
 
@@ -100,18 +100,18 @@ int	get_target(t_stack **stack_a, int index_b, int t_index, int t_pos)
 	return (t_pos);
 }
 
-void	set_pos_targ(t_stack **stack_a, t_stack **stack_b)
+void	ft_set_target_pos(t_stack **stack_a, t_stack **stack_b)
 {
 	int		t_pos;
 	t_stack	*aux_b;
 
 	t_pos = 0;
 	aux_b = *stack_b;
-	get_position(stack_a);
-	get_position(stack_b);
+	ft_get_position(stack_a);
+	ft_get_position(stack_b);
 	while (aux_b)
 	{
-		t_pos = get_target(stack_a, aux_b->index, INT_MAX, t_pos);
+		t_pos = ft_get_target(stack_a, aux_b->index, INT_MAX, t_pos);
 		aux_b->target = t_pos;
 		aux_b = aux_b->next;
 	}
